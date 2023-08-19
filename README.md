@@ -8,7 +8,7 @@ Looks like this:
 
 You need ags v1 (either from v1 branch or main once it is released)
 
-You also need: cava, playerctl, curl, hyprland
+You also need: cava, playerctl, curl, hyprland, sassc
 
 
 Just stick the .config folder in your home then edit ~/.config/ags/widgets/weather.js to change the city to your city.
