@@ -19,4 +19,4 @@ The programs folder in the config comes with pre-compiled binaries, these have a
 The source for all of these is available in the src folder if you want to compile them yourself or make changes.
 
 
-CSS is borrowed and modified from [end-4](https://github.com/end-4/dots-hyprland) - Visual design of the bar is also based off their hybrid bar.
+CSS is borrowed and modified from [end-4.](https://github.com/end-4/dots-hyprland) The Visual design of the bar is also based off their hybrid bar.
