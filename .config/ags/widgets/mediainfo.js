@@ -11,10 +11,10 @@ export const MediaInfo = () => Widget.Box({
             connections: [[Mpris, box => {
                 const mpris = Mpris.getPlayer('');
                 if (mpris?.coverPath) {
-                    box.visibility = true;
+                    box.visible = true;
                     box.setStyle(`background-image: url('${mpris.coverPath}');`);
                 } else {
-                    box.visibility = false;
+                    box.visible = false;
                 }
             }]],
             children: [
