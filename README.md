@@ -1,5 +1,5 @@
 # ags-dots
-Dots for ags
+Dots for [ags](https://github.com/Aylur/ags)
 
 Looks like this:
 
