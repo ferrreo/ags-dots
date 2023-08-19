@@ -19,7 +19,7 @@ export const CpuTemp = () => Widget.Box({
             valign: 'center',
             className: 'txt-norm txt',
             connections: [[gostat, label => {
-                if (gostat?.state?.cpu) {
+                if (gostat?.state?.cputemp) {
                     label.label = gostat?.state?.cputemp + "°C";
                 }
             }]],
