@@ -17,7 +17,7 @@ export const Clock = () => Widget.Box({
             halign: 'end',
             valign: 'center',
             className: 'txt-smallie txt',
-            connections: [[5000, label => label.label = getFormattedDate()]],
+            connections: [[60000, label => label.label = getFormattedDate()]],
         }),
     ],
 });
