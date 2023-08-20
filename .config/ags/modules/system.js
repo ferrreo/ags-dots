@@ -4,6 +4,7 @@ import { CpuTemp } from "../widgets/cputemp.js";
 import { Mem } from "../widgets/mem.js";
 import { Clock } from "../widgets/clock.js";
 import { Weather } from '../widgets/weather.js';
+import { Batt } from '../widgets/batt.js';
 
 export const System = () => Widget.EventBox({
     onPrimaryClick: () => App.toggleWindow('calendar'),
@@ -21,6 +22,7 @@ export const System = () => Widget.EventBox({
                     Cpu(),
                     CpuTemp(),
                     Mem(),
+                    Batt(),
                     Weather(),
                     Clock()
                 ],
