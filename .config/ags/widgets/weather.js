@@ -24,11 +24,14 @@ export const Weather = () => Widget.Box({
     ],
     connections: [[900000, async box => {
         try {
-            let weather = exec(`curl https://wttr.in/${city}?format=j1`);
-            weather = JSON.parse(weather);
-            const weatherCode = weather.current_condition[0].weatherCode;
-            box.children[0].label = WEATHER_SYMBOL[WWO_CODE[weatherCode]];
-            box.children[1].label = weather.current_condition[0].temp_C + "°C";
+            // timeout here is to delay enough on boot that network has time to connect - this is a hack but for something that updates so rarely it's fine
+            setTimeout(() => {
+                let weather = exec(`curl https://wttr.in/${city}?format=j1`);
+                weather = JSON.parse(weather);
+                const weatherCode = weather.current_condition[0].weatherCode;
+                box.children[0].label = WEATHER_SYMBOL[WWO_CODE[weatherCode]];
+                box.children[1].label = weather.current_condition[0].temp_C + "°C";
+            }, 5000);
         } catch (err) {
             console.log(err);
         }
