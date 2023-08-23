@@ -1,6 +1,7 @@
 const { Widget } = ags;
 const { execAsync } = ags.Utils;
 import { gohypr } from '../services/gohypr.js';
+import barConfig from '../barConfig.js';
 
 export const Workspaces = () => Widget.EventBox({
     onScrollUp: () => execAsync('hyprctl dispatch workspace -1'),
@@ -10,7 +11,7 @@ export const Workspaces = () => Widget.EventBox({
             Widget.Box({
                 halign: 'center',
                 children: [Widget.Box({
-                    children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => (Widget.Button({
+                    children: Array.from({ length: barConfig?.numberOfWorkspaces }, (_, i) => i + 1).map(i => (Widget.Button({
                         className: 'bar-ws-button',
                         onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`).catch(print),
                         child: Widget.Label({

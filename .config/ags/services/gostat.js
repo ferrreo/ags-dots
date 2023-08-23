@@ -1,8 +1,7 @@
 const { App } = ags;
 import { deflisten } from './deflisten.js';
+import barConfig from '../barConfig.js';
 
-const udpateDelay = "2s";
-
-export const gostat = deflisten('gostat', `${App.configDir}/programs/gostat ${udpateDelay}`, (line) => {
+export const gostat = deflisten('gostat', `${App.configDir}/programs/gostat ${barConfig.sysinfoUpdateInterval}`, (line) => {
     return JSON.parse(line);
 });

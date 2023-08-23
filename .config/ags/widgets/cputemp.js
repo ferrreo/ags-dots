@@ -1,5 +1,6 @@
 const { Widget } = ags;
 import { gostat } from '../services/gostat.js';
+import { getTemp } from '../lib.js';
 
 export const CpuTemp = () => Widget.Box({
     halign: 'end',
@@ -20,7 +21,7 @@ export const CpuTemp = () => Widget.Box({
             className: 'txt-norm txt',
             connections: [[gostat, label => {
                 if (gostat?.state?.cputemp) {
-                    label.label = gostat?.state?.cputemp + "°C";
+                    label.label = getTemp(gostat?.state?.cputemp);
                 }
             }]],
         }),

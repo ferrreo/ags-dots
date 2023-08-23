@@ -1,5 +1,6 @@
 const { Widget } = ags;
 const { Battery } = ags.Service;
+import { getBattery } from '../lib.js';
 
 export const Batt = () => Widget.Box({
     halign: 'end',
@@ -34,16 +35,3 @@ export const Batt = () => Widget.Box({
         }),
     ],
 });
-
-function getBattery(batt) {
-    if (batt?.charging) {
-        return "battery_charging_full";
-    }
-    if (batt?.charged) {
-        return "battery_full";
-    }
-    
-    return battIcons[Math.floor(battIcons.length * (batt?.percent / 100))];
-}
-
-const battIcons = ["battery_0_bar","battery_1_bar","battery_2_bar","battery_3_bar","battery_4_bar","battery_5_bar", "battery_6_bar"];
