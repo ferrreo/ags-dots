@@ -431,12 +431,17 @@ calendar {
 }
 
 tooltip {
-    background-color: $background;
-    color: $onBackground;
-    border-radius: 5rem;
-    padding: 1rem;
-    margin: 1rem;
-    border: 1px solid $onBackground;
+    background-color: transparent;
+    border: none;
+
+    > * > *{
+        background-color: $background;
+        border-radius: 1.5rem;
+        color: $onBackground;
+        padding: 1rem;
+        margin: 0.5rem;
+        box-shadow: 0.25rem 0 0.25rem 0 $background;
+    }
 }
 
 .musicbox {

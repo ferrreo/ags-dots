@@ -12,9 +12,9 @@ export const Weather = () => Widget.Box({
         Widget.Label({
             halign: 'end',
             valign: 'center',
-            className: 'txt-larger txt',
+            className: 'txt-larger txt icon-material',
             style: 'margin-right: 0.5rem; margin-top: 1px;',
-            label: '🌦',
+            label: 'rainy',
         }),
         Widget.Label({
             halign: 'end',
@@ -24,19 +24,28 @@ export const Weather = () => Widget.Box({
     ],
     connections: [[900000, async box => {
         try {
-            // timeout here is to delay enough on boot that network has time to connect - this is a hack but for something that updates so rarely it's fine
             setTimeout(() => {
-                let weather = exec(`curl https://wttr.in/${city}?format=j1`);
-                weather = JSON.parse(weather);
-                const weatherCode = weather.current_condition[0].weatherCode;
-                box.children[0].label = WEATHER_SYMBOL[WWO_CODE[weatherCode]];
-                box.children[1].label = weather.current_condition[0].temp_C + "°C";
+            let weather = exec(`curl https://wttr.in/${city}?format=j1`);
+            weather = JSON.parse(weather);
+            const weatherCode = weather.current_condition[0].weatherCode;
+            box.tooltipText = weather.current_condition[0].weatherDesc[0].value;
+            box.children[0].label = getSymbol(weatherCode);
+            box.children[1].label = weather.current_condition[0].temp_C + "°C";
             }, 5000);
         } catch (err) {
             console.log(err);
         }
     }]],
 });
+
+function getSymbol(weatherCode) {
+    const dt = new Date();
+    const hour = dt.getHours();
+    if (hour < 7 || hour > 21) {
+        return NIGHT_WEATHER_SYMBOL[WWO_CODE[weatherCode]];
+    }
+    return WEATHER_SYMBOL[WWO_CODE[weatherCode]];
+}
 
 const WWO_CODE = {
     "113": "Sunny",
@@ -90,23 +99,45 @@ const WWO_CODE = {
 }
 
 const WEATHER_SYMBOL = {
-    "Unknown": "✨",
-    "Cloudy": "☁️",
-    "Fog": "🌫",
-    "HeavyRain": "🌧",
-    "HeavyShowers": "🌧",
-    "HeavySnow": "❄️",
-    "HeavySnowShowers": "❄️",
-    "LightRain": "🌦",
-    "LightShowers": "🌦",
-    "LightSleet": "🌧",
-    "LightSleetShowers": "🌧",
-    "LightSnow": "🌨",
-    "LightSnowShowers": "🌨",
-    "PartlyCloudy": "⛅️",
-    "Sunny": "☀️",
-    "ThunderyHeavyRain": "🌩",
-    "ThunderyShowers": "⛈",
-    "ThunderySnowShowers": "⛈",
-    "VeryCloudy": "☁️",
+    "Unknown": "air",
+    "Cloudy": "cloud",
+    "Fog": "foggy",
+    "HeavyRain": "rainy_heavy",
+    "HeavyShowers": "rainy_heavy",
+    "HeavySnow": "snowing_heavy",
+    "HeavySnowShowers": "snowing_heavy",
+    "LightRain": "rainy",
+    "LightShowers": "rainy",
+    "LightSleet": "rainy_snow",
+    "LightSleetShowers": "rainy_snow",
+    "LightSnow": "cloudy_snowing",
+    "LightSnowShowers": "cloudy_snowing",
+    "PartlyCloudy": "partly_cloudy_day",
+    "Sunny": "clear_day",
+    "ThunderyHeavyRain": "thunderstorm",
+    "ThunderyShowers": "thunderstorm",
+    "ThunderySnowShowers": "thunderstorm",
+    "VeryCloudy": "cloud",
+}
+
+const NIGHT_WEATHER_SYMBOL = {
+    "Unknown": "air",
+    "Cloudy": "cloud",
+    "Fog": "foggy",
+    "HeavyRain": "rainy_heavy",
+    "HeavyShowers": "rainy_heavy",
+    "HeavySnow": "snowing_heavy",
+    "HeavySnowShowers": "snowing_heavy",
+    "LightRain": "rainy",
+    "LightShowers": "rainy",
+    "LightSleet": "rainy_snow",
+    "LightSleetShowers": "rainy_snow",
+    "LightSnow": "cloudy_snowing",
+    "LightSnowShowers": "cloudy_snowing",
+    "PartlyCloudy": "partly_cloudy_night",
+    "Sunny": "clear_night",
+    "ThunderyHeavyRain": "thunderstorm",
+    "ThunderyShowers": "thunderstorm",
+    "ThunderySnowShowers": "thunderstorm",
+    "VeryCloudy": "cloud",
 }
