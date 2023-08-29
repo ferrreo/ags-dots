@@ -5,6 +5,7 @@ import { Mem } from "../widgets/mem.js";
 import { Clock } from "../widgets/clock.js";
 import { Weather } from '../widgets/weather.js';
 import { Batt } from '../widgets/batt.js';
+import { Systray } from "../widgets/systray.js";
 
 export const System = () => Widget.EventBox({
     onPrimaryClick: () => App.toggleWindow('calendar'),
@@ -24,6 +25,7 @@ export const System = () => Widget.EventBox({
                     Mem(),
                     Batt(),
                     Weather(),
+                    Systray(),
                     Clock()
                 ],
             }),

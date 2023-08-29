@@ -27,7 +27,7 @@ export const Visualiser = () => Widget.Box({
             }
             let count = 0;
             for (const child of box.get_children()) {
-                child.fraction = cvjson?.service.state[count] / 1000;
+                child.fraction = cvjson?.service.state[count] / 1500;
                 count++;
             }
         }],

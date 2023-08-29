@@ -1,10 +1,10 @@
 [general]
 
 mode = normal
-framerate = 15
-autosens = 0
+framerate = 30
+autosens = 1
 ;overshoot = 10
-sensitivity = 750
+;sensitivity = 750
 bars = 15
 
 [input]
@@ -35,4 +35,4 @@ gradient_color_8 = '#C1838E'
 [smoothing]
 monstercat = 1
 gravity = 1000000
-noise_reduction = 0.34
+noise_reduction = 34
